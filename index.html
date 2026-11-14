@@ -1,0 +1,568 @@
+<!doctype html>
+<!--
+MIT License
+
+Copyright (c) 2026 cityedge
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>ID Photo Print v1.0.0</title>
+<style id="dynamicPageStyle">@page { size: 89mm 127mm; margin: 0; }</style>
+<style>
+:root{color-scheme:dark;--bg:#0b1019;--panel:#151e2c;--panel2:#1c2839;--panel3:#223047;--text:#edf3fb;--muted:#a1b2ca;--border:#34465f;--focus:#7abfff;--accent:#439ee9;--accent2:#276eae;--success:#82e0ae;--warn:#f0cb8b;--danger:#ff9a9d;font-family:system-ui,-apple-system,'Segoe UI','Noto Sans JP',sans-serif}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text)}button,select,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.46}button:focus-visible,input:focus-visible,select:focus-visible,.drop:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.shell{max-width:1580px;margin:auto;padding:24px clamp(13px,2.5vw,34px) 40px}.header{display:flex;justify-content:space-between;align-items:start;gap:14px;margin-bottom:19px}.eyebrow{color:#8acaff;font-size:11px;font-weight:800;letter-spacing:.1em}.header h1{font-size:clamp(23px,2.6vw,32px);margin:4px 0 8px;letter-spacing:-.025em}.lede{color:var(--muted);font-size:13px;margin:0;line-height:1.65}.top-actions{display:flex;gap:9px;align-items:center;flex-shrink:0}.version{border:1px solid var(--border);padding:8px 10px;border-radius:999px;color:#c9d7e8;font-size:11px;white-space:nowrap}.lang{background:var(--panel);color:var(--text);padding:9px 10px;border:1px solid var(--border);border-radius:9px}
+.workspace{display:grid;grid-template-columns:minmax(284px,345px) minmax(0,1fr);gap:18px;align-items:start}.controls{display:block;min-width:0}.tabBar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin-bottom:13px;border:1px solid var(--border);border-radius:11px;padding:4px;background:var(--panel)}.tabButton{font-size:12px;line-height:1.35;min-height:38px;padding:7px 3px;border:0;border-radius:8px;background:transparent;color:var(--muted);font-weight:700}.tabButton.active,.tabButton[aria-selected="true"]{background:#2d557c;color:#fff}.tabButton:hover:not(.active){background:var(--panel2);color:var(--text)}.tabPane[hidden]{display:none!important}.panel{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:17px;min-width:0}.panel h2{font-size:15px;margin:0 0 14px;font-weight:750;display:flex;gap:9px;align-items:center}.number{background:#29496d;color:#c2e3ff;font-size:11px;font-weight:800;border-radius:7px;padding:4px 7px}.field{margin:0 0 13px}.field:last-child{margin-bottom:0}.field label,.fieldLabel{display:block;font-size:12px;font-weight:700;margin:0 0 7px}.control{background:var(--panel2);color:var(--text);border:1px solid #50617a;border-radius:9px;padding:9px 11px;min-width:0;width:100%}.control:disabled{opacity:.45}.control[type=number]{font-variant-numeric:tabular-nums}.helper{font-size:11px;line-height:1.55;color:var(--muted);margin:7px 0 0}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.two.compact{gap:8px}.input-unit{display:flex;gap:5px;align-items:center}.input-unit span{font-size:11px;color:var(--muted)}.input-unit input{min-width:0}.drop{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:128px;padding:16px 10px;text-align:center;background:var(--panel2);border:1.5px dashed #637d9e;border-radius:12px;transition:background .15s,border .15s;cursor:pointer}.drop:hover,.drop.drag-over{background:#24354d;border-color:#9fd4ff}.drop svg{width:27px;height:27px;margin-bottom:8px;stroke:#96c9f3}.drop strong{font-size:13px}.drop small{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5}.file-info{font-size:11px;line-height:1.65;color:var(--muted);word-break:break-word;margin:10px 0 0}.check-row{display:flex;align-items:center;gap:9px;font-size:12px;line-height:1.4;cursor:pointer}.check-row input{accent-color:#4d9ee0;width:16px;height:16px}.hidden{display:none!important}.smallbutton{border:1px solid #50647d;background:var(--panel2);color:var(--text);padding:8px 11px;border-radius:8px;font-size:12px}.smallbutton:hover{background:var(--panel3)}.subpanel{border-top:1px solid #35465f;padding-top:13px;margin-top:12px}.summary{margin-top:10px;padding:11px 12px;border-radius:9px;border:1px solid #406080;background:#1d3047;color:#c5e4fc;font-size:12px;line-height:1.6}.summary.error{border-color:#80545c;background:#38272f;color:#ffb6b8}
+/* Automatic placement with a selectable copy limit. */
+.autoPlacement{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(108px,1fr);gap:9px;align-items:center}
+.autoPlacementToggle{min-width:0;align-self:center}
+.autoLimitField{margin:0}
+.autoLimitField label{white-space:nowrap}
+.autoLimitField select{font-size:12px;padding:9px 7px}
+@media(max-width:350px){.autoPlacement{grid-template-columns:1fr}.autoLimitField{margin-top:5px}}
+
+.right{min-width:0}.views{display:grid;grid-template-columns:minmax(285px,380px) minmax(340px,1fr);gap:16px;align-items:start}.panelTop{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px}.panelTop h2{margin:0}.tiny{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}.crop-stage{display:flex;justify-content:center;align-items:center;min-height:340px;max-height:510px;padding:11px;border-radius:10px;border:1px solid #3e506a;background:repeating-conic-gradient(#263448 0 25%,#1f2c3e 0 50%) 50%/20px 20px;overflow:hidden;position:relative}.crop-stage canvas{display:block;max-width:100%;max-height:490px;width:auto;height:auto;touch-action:none;cursor:grab;box-shadow:0 3px 13px #0008}.crop-stage canvas:active{cursor:grabbing}.crop-overlay{position:absolute;pointer-events:none;border:2px solid #e8f0f9a6;box-shadow:inset 0 0 0 1px #0006;max-height:490px}.crop-overlay::before,.crop-overlay::after{content:"";position:absolute;pointer-events:none}.crop-overlay::before{inset:0;border-left:1px solid #fff6;border-right:1px solid #fff6;left:33.333%;right:33.333%}.crop-overlay::after{top:33.333%;bottom:33.333%;left:0;right:0;border-top:1px solid #fff6;border-bottom:1px solid #fff6}.empty-crop{position:absolute;inset:15px;display:grid;place-content:center;text-align:center;color:#b4c5d9;font-size:13px;line-height:1.7;pointer-events:none}.crop-controls{margin-top:15px}.zoom-row{display:flex;align-items:center;gap:10px}.zoom-row input{accent-color:#66b8f6;flex:1;min-width:0}.adjustGroup{margin-bottom:20px}.adjustGroup:last-of-type{margin-bottom:10px}.adjustHead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px;font-size:12px;font-weight:650}.adjustHead output{font-variant-numeric:tabular-nums;color:#b7dfff;font-size:12px}.adjustGroup input[type=range]{width:100%;accent-color:#66b8f6;cursor:pointer}.adjustEnds{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;margin-top:2px}.rotationTools{display:flex;gap:8px;flex-wrap:wrap}.rotationTools .smallbutton{flex:1;min-width:105px}.rotationTools .smallbutton:disabled{opacity:.45}.adjustHint{font-size:11px;color:var(--muted);line-height:1.65;margin:8px 0 0}.adjustReset{margin-top:6px}.zoom-row output{min-width:45px;text-align:right;font-size:12px;font-variant-numeric:tabular-nums}.tool-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:12px}.quality-info{font-size:11px;color:var(--muted);line-height:1.6;margin-top:10px;min-height:34px}.quality-info.warn{color:var(--warn)}
+.sheet-stage{display:flex;align-items:center;justify-content:center;min-height:490px;max-height:690px;padding:17px;overflow:auto;border-radius:10px;border:1px solid #3e506a;background:repeating-linear-gradient(45deg,#1a2635 0 12px,#1e2a3a 12px 24px)}.sheet-page{flex:none;background:#fff;box-shadow:0 6px 24px #0009;overflow:hidden;line-height:0}.sheet-page svg{display:block;width:100%;height:100%}.sheet-caption{font-size:11px;line-height:1.6;color:var(--muted);margin:10px 0 0}
+.printPanel{margin-top:16px}.printActions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}.printButton{border:1px solid #8ecbfc;background:#318bd2;color:white;padding:13px 24px;border-radius:10px;font-size:15px;font-weight:750;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:235px}.printButton:not(:disabled):hover{background:#489fde}.printButton svg{width:19px;height:19px}.printWarn{font-size:12px;line-height:1.7;color:#f3d9a8;background:#2d271f;border:1px solid #695639;padding:10px 12px;border-radius:9px;margin-top:13px}.printNote{font-size:11px;line-height:1.65;color:var(--muted);margin:10px 0 0}.footer{font-size:11px;color:var(--muted);margin-top:21px;line-height:1.6}
+#printRoot{display:none}
+@media(max-width:1260px){.views{grid-template-columns:1fr 1fr}.crop-stage{min-height:310px}.sheet-stage{min-height:440px}}
+@media(max-width:1060px){.workspace{grid-template-columns:300px minmax(0,1fr)}.views{grid-template-columns:1fr}.crop-stage{min-height:300px}.sheet-stage{min-height:400px;max-height:620px}}
+@media(max-width:760px){.shell{padding:15px 12px 35px}.workspace{grid-template-columns:1fr}.views{grid-template-columns:1fr 1fr}.header{flex-wrap:wrap}.panel{padding:15px}}
+@media(max-width:570px){.views{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}.sheet-stage{min-height:400px;max-height:620px}.printButton{width:100%}}
+
+/* The print action remains visible in the upper toolbar. */
+.shell{padding-top:0}
+.header{
+ display:grid;grid-template-columns:minmax(0,1fr) minmax(275px,1fr) minmax(0,1fr);
+ gap:16px;align-items:center;position:sticky;top:0;z-index:30;
+ margin-bottom:16px;padding:12px 0 13px;
+ background:rgba(11,16,25,.97);border-bottom:1px solid var(--border);
+ box-shadow:0 8px 16px rgba(11,16,25,.6);
+}
+.header-brand{min-width:0}
+.header h1{margin:3px 0 5px;font-size:clamp(21px,2.3vw,29px)}
+.header .lede{font-size:11px;line-height:1.45;max-width:430px}
+.header-print{min-width:0;display:flex;flex-direction:column;align-items:center;gap:5px;
+ padding:0 18px;border-left:1px solid var(--border);border-right:1px solid var(--border)}
+.header-print .printButton{width:100%;max-width:325px;min-width:0;min-height:45px;padding:9px 12px;font-size:14px}
+.header-print-status{width:100%;min-width:0;min-height:29px;display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.3;text-align:center}
+.print-status{font-size:12px;color:var(--muted);font-weight:700}
+.print-status.is-ready{color:var(--success)}
+.print-job-info{display:block;max-width:100%;font-size:10px;line-height:1.3;color:var(--muted);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.header .top-actions{justify-content:flex-end;justify-self:end;align-self:start;padding-top:5px}
+.printGuidance{margin-top:14px;background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:11px 14px}
+.printGuidance summary{font-size:12px;font-weight:700;color:#b7dafa;cursor:pointer;list-style-position:inside}
+.printGuidance[open] .printWarn{margin-top:11px}
+@media(max-width:1030px){
+ .header{grid-template-columns:minmax(0,1fr) minmax(265px,1fr) auto;gap:12px}
+ .header-print{padding:0 12px}
+ .header .lede{max-width:350px}
+}
+@media(max-width:840px){
+ .header{grid-template-columns:minmax(0,1fr) auto;row-gap:9px;padding:10px 0}
+ .header-brand{grid-column:1;grid-row:1}
+ .header .top-actions{grid-column:2;grid-row:1}
+ .header-print{grid-column:1/-1;grid-row:2;flex-direction:row;justify-content:center;align-items:center;border:0;border-top:1px solid var(--border);padding:9px 0 0;gap:15px}
+ .header-print .printButton{max-width:270px;flex:0 1 270px}
+ .header-print-status{flex:1;max-width:350px;align-items:flex-start;text-align:left}
+}
+@media(max-width:600px){
+ .header{position:relative;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+ .header h1{font-size:23px}
+ .header .lede{font-size:10px}
+ .header .top-actions{width:auto;gap:5px;align-items:flex-start;justify-content:flex-end}
+ .header .version{display:none}
+ .header .lang{font-size:12px;padding:7px 6px}
+ .header-print{gap:9px}
+ .header-print .printButton{font-size:12px;min-height:43px;flex:0 1 205px;padding:7px 8px}
+ .header-print .printButton svg{width:17px;height:17px;flex-shrink:0}
+ .header-print-status{flex:1;min-width:0}
+ .print-status{font-size:11px}
+ .print-job-info{font-size:10px}
+}
+
+@media print{
+  :root{color-scheme:light}
+  html,body{margin:0!important;padding:0!important;background:#fff!important;overflow:hidden!important}
+  .shell{display:none!important}
+  #printRoot{display:block!important;margin:0!important;padding:0!important;border:0!important;line-height:0!important}
+  #printRoot svg{display:block!important;margin:0!important;padding:0!important;overflow:hidden!important;max-width:none!important;max-height:none!important;break-inside:avoid!important}
+}
+</style>
+</head>
+<body>
+<main class="shell">
+ <header class="header">
+  <div class="header-brand"><h1 data-i18n="title">ID Photo Print</h1><p class="lede" data-i18n="subtitle">写真をトリミングし、指定したmm寸法で用紙に配置。Chromeからそのまま印刷できます。</p></div>
+  <div class="header-print">
+   <button id="printBtn" class="printButton" type="button" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/><path d="M18 11h.01"/></svg><span data-i18n="printBtn">Chromeから直接印刷</span></button>
+   <div class="header-print-status"><span id="printStatus" class="print-status" role="status" aria-live="polite" data-i18n="uploadFirst">写真を選択してください</span><span class="print-job-info" id="printJobInfo"></span></div>
+  </div>
+  <div class="top-actions"><span class="version">v1.0.0</span><select class="lang" id="language" aria-label="Language"><option value="ja">日本語</option><option value="en">English</option></select></div>
+ </header>
+ <div class="workspace">
+  <aside class="controls">
+   <div class="tabBar" role="tablist" aria-label="Edit options">
+    <button type="button" class="tabButton active" role="tab" id="tabButtonCrop" aria-controls="paneCrop" aria-selected="true" data-tab="crop" data-i18n="tabCrop">写真・回転</button>
+    <button type="button" class="tabButton" role="tab" id="tabButtonAdjust" aria-controls="paneAdjust" aria-selected="false" data-tab="adjust" data-i18n="tabAdjust">画質補正</button>
+    <button type="button" class="tabButton" role="tab" id="tabButtonLayout" aria-controls="paneLayout" aria-selected="false" data-tab="layout" data-i18n="tabLayout">用紙・配置</button>
+   </div>
+   <div class="tabPane" id="paneCrop" role="tabpanel" aria-labelledby="tabButtonCrop">
+   <section class="panel">
+    <h2><span class="number">01</span><span data-i18n="photoSection">写真と仕上がりサイズ</span></h2>
+    <div id="dropzone" class="drop" role="button" tabindex="0" aria-label="Choose photo">
+     <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="m4 18 5-5 3 3 3-4 5 6"/></svg>
+     <strong data-i18n="uploadTitle">クリックして写真を選択</strong><small data-i18n="uploadHint">ドラッグ＆ドロップ可 · JPG / PNG / WebP / BMP</small>
+    </div>
+    <input id="imageFile" type="file" accept="image/jpeg,image/png,image/webp,image/bmp" hidden>
+    <div class="file-info" id="photoInfo" data-i18n="noPhoto">写真はまだ選択されていません</div>
+    <div class="subpanel">
+     <div class="field"><label for="photoPreset" data-i18n="photoSize">写真サイズ</label>
+      <select id="photoPreset" class="control">
+       <option value="ID30" data-i18n="id30">30 × 40 mm（履歴書など）</option>
+       <option value="PASS35" data-i18n="pass35">35 × 45 mm（パスポートなど）</option>
+       <option value="SMALL25" data-i18n="small25">25 × 30 mm</option>
+       <option value="LARGE40" data-i18n="large40">40 × 50 mm</option>
+       <option value="SQUARE50" data-i18n="square50">50 × 50 mm</option>
+       <option value="CUSTOM" data-i18n="customPhoto">カスタムサイズ</option>
+      </select>
+     </div>
+     <div class="two compact hidden" id="photoCustomFields">
+      <div class="field"><label for="photoWidth" data-i18n="widthMm">幅（mm）</label><input class="control" type="number" id="photoWidth" min="10" max="200" step="0.1" value="30"></div>
+      <div class="field"><label for="photoHeight" data-i18n="heightMm">高さ（mm）</label><input class="control" type="number" id="photoHeight" min="10" max="200" step="0.1" value="40"></div>
+     </div>
+    </div>
+    <div class="subpanel">
+     <div class="fieldLabel" data-i18n="rotationTitle">写真の回転・傾き補正</div>
+     <div class="rotationTools">
+      <button type="button" class="smallbutton" id="rotateLeft" disabled data-i18n="rotateLeft">左に90°</button>
+      <button type="button" class="smallbutton" id="rotateRight" disabled data-i18n="rotateRight">右に90°</button>
+     </div>
+     <div class="adjustGroup" style="margin-top:15px">
+      <div class="adjustHead"><label for="tilt" data-i18n="tiltLabel">傾き調整</label><output id="tiltValue">0.0°</output></div>
+      <input type="range" id="tilt" min="-15" max="15" step="0.1" value="0" disabled>
+      <div class="adjustEnds"><span>−15°</span><span>0°</span><span>+15°</span></div>
+     </div>
+     <button type="button" class="smallbutton" id="resetRotation" disabled data-i18n="resetRotation">回転をリセット</button>
+     <p class="adjustHint" data-i18n="rotationHint">回転しても写真の四隅に余白が出ないよう、自動的に切り抜き範囲を調整します。</p>
+    </div>
+   </section>
+   </div>
+   <div class="tabPane" id="paneAdjust" role="tabpanel" aria-labelledby="tabButtonAdjust" hidden>
+    <section class="panel">
+     <h2><span class="number">02</span><span data-i18n="adjustTitle">画質補正</span></h2>
+     <p class="helper" style="margin:0 0 18px" data-i18n="adjustInfo">スライダー操作は印刷にも反映されます。元画像は変更しません。</p>
+     <div class="adjustGroup">
+      <div class="adjustHead"><label for="brightness" data-i18n="brightnessLabel">明るさ（中間調）</label><output id="brightnessValue">0</output></div>
+      <input type="range" id="brightness" min="-50" max="50" step="1" value="0" disabled>
+      <div class="adjustEnds"><span data-i18n="darker">暗く</span><span data-i18n="brighter">明るく</span></div>
+     </div>
+     <div class="adjustGroup">
+      <div class="adjustHead"><label for="contrast" data-i18n="contrastLabel">コントラスト</label><output id="contrastValue">0</output></div>
+      <input type="range" id="contrast" min="-50" max="50" step="1" value="0" disabled>
+      <div class="adjustEnds"><span data-i18n="softer">弱く</span><span data-i18n="stronger">強く</span></div>
+     </div>
+     <div class="adjustGroup">
+      <div class="adjustHead"><label for="temperature" data-i18n="temperatureLabel">色温度</label><output id="temperatureValue">0</output></div>
+      <input type="range" id="temperature" min="-50" max="50" step="1" value="0" disabled>
+      <div class="adjustEnds"><span data-i18n="cooler">寒色へ</span><span data-i18n="warmer">暖色へ</span></div>
+     </div>
+     <div class="adjustGroup">
+      <div class="adjustHead"><label for="sharpness" data-i18n="sharpnessLabel">シャープネス</label><output id="sharpnessValue">0</output></div>
+      <input type="range" id="sharpness" min="0" max="100" step="1" value="0" disabled>
+      <div class="adjustEnds"><span data-i18n="none">なし</span><span data-i18n="sharpHigh">強い</span></div>
+     </div>
+     <button type="button" class="smallbutton adjustReset" id="resetAdjust" disabled data-i18n="resetAdjust">画質補正をすべてリセット</button>
+     <p class="adjustHint" data-i18n="sharpnessHint">シャープネスを強くしすぎると、輪郭や肌が不自然になることがあります。</p>
+    </section>
+   </div>
+   <div class="tabPane" id="paneLayout" role="tabpanel" aria-labelledby="tabButtonLayout" hidden>
+   <section class="panel">
+    <h2><span class="number">03</span><span data-i18n="layoutSection">用紙・配置</span></h2>
+    <div class="field"><label for="paperPreset" data-i18n="paperSize">用紙サイズ</label>
+     <select id="paperPreset" class="control">
+      <option value="L" data-i18n="paperL">L判 — 89 × 127 mm</option>
+      <option value="2L" data-i18n="paper2L">2L判 — 127 × 178 mm</option>
+      <option value="POST" data-i18n="paperPost">はがき — 100 × 148 mm</option>
+      <option value="A4">A4 — 210 × 297 mm</option>
+      <option value="CUSTOM" data-i18n="customPaper">カスタム用紙</option>
+     </select>
+    </div>
+    <div class="two compact hidden" id="paperCustomFields">
+     <div class="field"><label for="paperWidth" data-i18n="widthMm">幅（mm）</label><input class="control" type="number" id="paperWidth" min="40" max="420" step="0.1" value="89"></div>
+     <div class="field"><label for="paperHeight" data-i18n="heightMm">高さ（mm）</label><input class="control" type="number" id="paperHeight" min="40" max="420" step="0.1" value="127"></div>
+    </div>
+    <div class="field"><label for="orientation" data-i18n="orientationLabel">用紙の向き</label><select class="control" id="orientation"><option value="portrait" data-i18n="portrait">縦</option><option value="landscape" data-i18n="landscape">横</option></select></div>
+    <div class="two compact">
+     <div class="field"><label for="margin" data-i18n="marginLabel">用紙の余白（mm）</label><input id="margin" class="control" type="number" min="3" max="30" step="0.5" value="12"></div>
+     <div class="field"><label for="gap" data-i18n="gapLabel">写真の間隔（mm）</label><input id="gap" class="control" type="number" min="0" max="30" step="0.5" value="3"></div>
+    </div>
+    <div class="autoPlacement">
+     <label class="check-row autoPlacementToggle"><input type="checkbox" id="autoCount" checked><span data-i18n="fillPaper">最大枚数を自動配置</span></label>
+     <div class="field autoLimitField"><label for="autoLimit" data-i18n="autoLimitLabel">配置数上限</label>
+      <select id="autoLimit" class="control">
+       <option value="4" data-i18n="limit4">4枚</option>
+       <option value="9" data-i18n="limit9">9枚</option>
+       <option value="16" data-i18n="limit16">16枚</option>
+       <option value="0" data-i18n="limitUnlimited">無制限</option>
+      </select>
+     </div>
+    </div>
+    <div class="field hidden" id="countFields" style="margin-top:12px"><label for="copies" data-i18n="countLabel">印刷枚数</label><input class="control" type="number" id="copies" min="1" max="100" step="1" value="4"></div>
+    <div class="field" style="margin-top:13px"><label for="placement" data-i18n="placementLabel">配置位置</label>
+     <select id="placement" class="control">
+      <option value="center" data-i18n="placeCenter">中央</option>
+      <option value="top" data-i18n="placeTop">上中央</option>
+      <option value="top-left" data-i18n="placeTopLeft">左上</option>
+     </select>
+    </div>
+    <div class="field" style="margin-top:14px"><label for="cutMarks" data-i18n="cutMarkLabel">切り取りガイド</label><select class="control" id="cutMarks"><option value="corners" data-i18n="cutCorners">四隅にトンボ（写真の外側）</option><option value="outline" data-i18n="cutOutline">写真の周囲に細い枠線</option><option value="none" data-i18n="cutNone">なし</option></select></div>
+    <div id="layoutSummary" class="summary">—</div>
+   </section>
+   <p class="helper" data-i18n="fixedDpiNote">印刷画像は600dpi固定。実際のプリンター品質はドライバー設定にも左右されます。</p>
+   </div>
+  </aside>
+  <section class="right">
+   <div class="views">
+    <section class="panel">
+     <div class="panelTop"><h2 data-i18n="cropTitle">写真のトリミング</h2><span class="tiny" id="cropDimensions">30 × 40 mm</span></div>
+     <div class="crop-stage" id="cropStage">
+      <canvas id="cropCanvas" width="480" height="640" aria-label="Crop editor: drag to reposition photo"></canvas>
+      <div class="crop-overlay hidden" id="cropGrid"></div>
+      <div id="emptyCrop" class="empty-crop" data-i18n="cropPlaceholder">写真を選ぶと、ここで位置と拡大率を調整できます。</div>
+     </div>
+     <div class="crop-controls"><label class="fieldLabel" for="zoom" data-i18n="zoomLabel">拡大率</label><div class="zoom-row"><input type="range" id="zoom" min="100" max="350" value="100" step="1" disabled><output id="zoomValue">100%</output></div></div>
+     <div class="tool-row"><button type="button" id="resetCrop" class="smallbutton" disabled data-i18n="resetCrop">位置と拡大率をリセット</button></div>
+     <div id="qualityInfo" class="quality-info" data-i18n="cropHelp">写真をドラッグして位置を調整できます。マウスホイールで拡大縮小も可能です。</div>
+    </section>
+    <section class="panel">
+     <div class="panelTop"><h2 data-i18n="sheetTitle">用紙プレビュー</h2><span class="tiny" id="paperDimensions">L判 · 89 × 127 mm</span></div>
+     <div class="sheet-stage" id="sheetStage"><div id="sheetPage" class="sheet-page" aria-label="Print sheet preview"></div></div>
+     <p class="sheet-caption" data-i18n="sheetHelp">画面の縮尺は実寸ではありません。印刷時にはmm単位で図形と写真を配置します。</p>
+    </section>
+   </div>
+   <details class="printGuidance" id="printGuidance">
+    <summary data-i18n="printHelpTitle">印刷設定の確認（必要なときに開く）</summary>
+    <div class="printWarn" data-i18n="printingWarning">印刷画面では、用紙サイズを一致させ、倍率100%、余白なし、ヘッダー・フッターなしに設定してください。プリンター側の「フチなし拡大」もオフにします。</div>
+    <p class="printNote" data-i18n="privacyNote">写真はブラウザ内で処理され、外部に送信されません。用紙設定と最後の写真の補正値は保存しますが、写真本体は保存しません。印刷ボタンからChromeの印刷画面を開きます。</p>
+   </details>
+  </section>
+ </div>
+ <footer class="footer"><span data-i18n="footer">Chrome向け。設定はこのブラウザ内に自動保存されます。写真本体は保存しません。</span><span id="storageWarning" class="hidden" role="status" aria-live="polite"></span></footer>
+</main>
+<div id="printRoot" aria-hidden="true"></div>
+<script>
+(()=>{'use strict';
+ const PRINT_DPI=600;
+ const P={ID30:[30,40],PASS35:[35,45],SMALL25:[25,30],LARGE40:[40,50],SQUARE50:[50,50]};
+ const PAPERS={L:[89,127],'2L':[127,178],POST:[100,148],A4:[210,297]};
+ const T={
+ ja:{title:'ID Photo Print',storageUnavailable:'設定を保存できません。ブラウザのストレージ設定を確認してください。',subtitle:'写真をトリミングし、指定したmm寸法で用紙に配置。Chromeからそのまま印刷できます。',photoSection:'写真と仕上がりサイズ',uploadTitle:'クリックして写真を選択',uploadHint:'ドラッグ＆ドロップ可 · JPG / PNG / WebP / BMP',noPhoto:'写真はまだ選択されていません',photoSize:'写真サイズ',id30:'30 × 40 mm（履歴書など）',pass35:'35 × 45 mm（パスポートなど）',small25:'25 × 30 mm',large40:'40 × 50 mm',square50:'50 × 50 mm',customPhoto:'カスタムサイズ',layoutSection:'用紙・配置',paperSize:'用紙サイズ',paperL:'L判 — 89 × 127 mm',paper2L:'2L判 — 127 × 178 mm',paperPost:'はがき — 100 × 148 mm',customPaper:'カスタム用紙',widthMm:'幅（mm）',heightMm:'高さ（mm）',orientationLabel:'用紙の向き',portrait:'縦',landscape:'横',marginLabel:'用紙の余白（mm）',gapLabel:'写真の間隔（mm）',fillPaper:'最大枚数を自動配置',autoLimitLabel:'配置数上限',limit4:'4枚',limit9:'9枚',limit16:'16枚',limitUnlimited:'無制限',placementLabel:'配置位置',placeCenter:'中央',placeTop:'上中央',placeTopLeft:'左上',countLabel:'印刷枚数',cutMarkLabel:'切り取りガイド',cutCorners:'四隅にトンボ（写真の外側）',cutOutline:'写真の周囲に細い枠線',cutNone:'なし',outputSection:'出力品質',resolutionLabel:'印刷画像の解像度',dpi300:'300 dpi（標準）',dpi600:'600 dpi（高精細）',dpiNote:'寸法は解像度に左右されません。元写真の画素数が少ない場合、600dpiを選んでも精細にはなりません。',cropTitle:'写真のトリミング',cropPlaceholder:'写真を選ぶと、ここで位置と拡大率を調整できます。',zoomLabel:'拡大率',resetCrop:'位置と拡大率をリセット',cropHelp:'写真をドラッグして位置を調整できます。マウスホイールで拡大縮小も可能です。',sheetTitle:'用紙プレビュー',sheetHelp:'画面の縮尺は実寸ではありません。印刷時にはmm単位で図形と写真を配置します。',printBtn:'Chromeから直接印刷',uploadFirst:'写真を選択してください',printingWarning:'印刷画面では、用紙サイズを一致させ、倍率100%、余白なし、ヘッダー・フッターなしに設定してください。プリンター側の「フチなし拡大」もオフにします。',privacyNote:'写真はブラウザ内で処理され、外部に送信されません。用紙設定と最後の写真の補正値は保存しますが、写真本体は保存しません。印刷ボタンからChromeの印刷画面を開きます。',footer:'Chrome向け。設定はこのブラウザ内に自動保存されます。写真本体は保存しません。',fileError:'画像を読み込めませんでした。JPG・PNG・WebP・BMPを選択してください。',invalid:'入力値を確認してください',noFit:'現在の用紙と余白では写真を配置できません。',count:'枚',max:'最大',columns:'列',rows:'行',printReady:'印刷可能',imageResolution:'元画像',visibleDpi:'切り抜き後の実効解像度（概算）',lowResolution:'元画像の画素数が少ないため、印刷が粗くなる可能性があります。',fileTooLarge:'ファイルサイズが大きすぎます（上限100MB）。',paperCustomLabel:'カスタム',paperLShort:'L判',paper2LShort:'2L判',paperPostShort:'はがき',tabCrop:'写真・回転',tabAdjust:'画質補正',tabLayout:'用紙・配置',rotationTitle:'写真の回転・傾き補正',rotateLeft:'左に90°',rotateRight:'右に90°',tiltLabel:'傾き調整',resetRotation:'回転をリセット',rotationHint:'回転後も四隅に空白が出ないよう、自動的に表示倍率を調整します。',adjustTitle:'画質補正',adjustInfo:'補正はプレビューと印刷の両方に反映されます。元の写真は変更しません。',brightnessLabel:'明るさ（中間調）',contrastLabel:'コントラスト',temperatureLabel:'色温度',sharpnessLabel:'シャープネス',darker:'暗く',brighter:'明るく',softer:'弱く',stronger:'強く',cooler:'寒色へ',warmer:'暖色へ',none:'なし',sharpHigh:'強い',resetAdjust:'画質補正をリセット',sharpnessHint:'シャープネスを強くしすぎると、輪郭や肌が不自然になることがあります。',printHelpTitle:'印刷設定の確認（必要なときに開く）',fixedDpiNote:'印刷画像は600dpi固定。実際のプリンター品質はドライバー設定にも左右されます。'},
+ en:{title:'ID Photo Print',storageUnavailable:'Settings could not be saved. Check your browser storage settings.',subtitle:'Crop your photo, lay out copies in exact millimeters, and print directly from Chrome.',photoSection:'Photo & print size',uploadTitle:'Click to choose a photo',uploadHint:'Drag & drop · JPG / PNG / WebP / BMP',noPhoto:'No photo selected',photoSize:'Photo size',id30:'30 × 40 mm (ID / résumé)',pass35:'35 × 45 mm (passport)',small25:'25 × 30 mm',large40:'40 × 50 mm',square50:'50 × 50 mm',customPhoto:'Custom dimensions',layoutSection:'Paper & layout',paperSize:'Paper size',paperL:'L photo — 89 × 127 mm',paper2L:'2L photo — 127 × 178 mm',paperPost:'Postcard — 100 × 148 mm',customPaper:'Custom paper',widthMm:'Width (mm)',heightMm:'Height (mm)',orientationLabel:'Orientation',portrait:'Portrait',landscape:'Landscape',marginLabel:'Paper margin (mm)',gapLabel:'Gap between photos (mm)',fillPaper:'Fill the sheet automatically',autoLimitLabel:'Maximum copies',limit4:'4 copies',limit9:'9 copies',limit16:'16 copies',limitUnlimited:'Unlimited',placementLabel:'Position on paper',placeCenter:'Center',placeTop:'Top center',placeTopLeft:'Top left',countLabel:'Number of copies',cutMarkLabel:'Cut guides',cutCorners:'Corner crop marks (outside)',cutOutline:'Thin frame around each photo',cutNone:'None',outputSection:'Image quality',resolutionLabel:'Print image resolution',dpi300:'300 dpi (standard)',dpi600:'600 dpi (high detail)',dpiNote:'DPI does not change physical dimensions. A low-resolution source will not gain detail from choosing 600dpi.',cropTitle:'Crop & position',cropPlaceholder:'Choose a photo to adjust its position and zoom.',zoomLabel:'Zoom',resetCrop:'Reset position and zoom',cropHelp:'Drag the photo to reposition it. Use the mouse wheel to zoom.',sheetTitle:'Sheet preview',sheetHelp:'The screen preview is not actual size. Printed photos and marks are positioned in millimeters.',printBtn:'Print directly from Chrome',uploadFirst:'Select a photo to print',printingWarning:'In Chrome, match the paper size, use 100% scaling, zero margins, and disable headers/footers. Turn off borderless enlargement in the printer driver.',privacyNote:'Photos stay in your browser and are never uploaded. Print preferences and edits for the most recent photo are stored, but photo files are not. Printing opens Chrome’s dialog directly.',footer:'Designed for Chrome. Settings are saved in this browser; original photos are not stored.',fileError:'Could not read the image. Choose JPG, PNG, WebP, or BMP.',invalid:'Check the values entered',noFit:'The photo does not fit the paper with these margins.',count:'copies',max:'maximum',columns:'columns',rows:'rows',printReady:'Ready to print',imageResolution:'Source image',visibleDpi:'Effective cropped resolution (estimate)',lowResolution:'The source image may appear soft when printed.',fileTooLarge:'File is too large (100MB limit).',paperCustomLabel:'Custom',paperLShort:'L photo',paper2LShort:'2L photo',paperPostShort:'Postcard',tabCrop:'Photo / rotate',tabAdjust:'Retouch',tabLayout:'Paper / layout',rotationTitle:'Rotation & straightening',rotateLeft:'Rotate 90° left',rotateRight:'Rotate 90° right',tiltLabel:'Straighten',resetRotation:'Reset rotation',rotationHint:'Zoom adjusts automatically to prevent empty corners after rotation.',adjustTitle:'Photo adjustments',adjustInfo:'Changes apply to both preview and print. Your original photo is never modified.',brightnessLabel:'Brightness (midtones)',contrastLabel:'Contrast',temperatureLabel:'Color temperature',sharpnessLabel:'Sharpness',darker:'Darker',brighter:'Brighter',softer:'Lower',stronger:'Higher',cooler:'Cooler',warmer:'Warmer',none:'None',sharpHigh:'High',resetAdjust:'Reset all adjustments',sharpnessHint:'Too much sharpening can make edges and skin look unnatural.',printHelpTitle:'Print setup checklist (expand if needed)',fixedDpiNote:'Print image resolution is fixed at 600 dpi. Actual printer quality also depends on driver settings.'}
+ };
+ const $=id=>document.getElementById(id);
+ const n=(id,fallback)=>{const v=Number($(id).value);return Number.isFinite(v)?v:fallback};
+ const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+ const STORAGE_SETTINGS_KEY='idPhotoPrint.settings.v1';
+ const STORAGE_EDIT_KEY='idPhotoPrint.lastPhotoEdit.v1';
+ const LEGACY_STORAGE_KEY='idPhotoPrint.v2';
+ const GLOBAL_KEYS=['lang','photoPreset','paperPreset','orientation','photoWidth','photoHeight','paperWidth','paperHeight','margin','gap','autoCount','autoLimit','copies','placement','cutMarks','activeTab'];
+ const PHOTO_EDIT_KEYS=['zoom','panX','panY','rotation','tilt','brightness','contrast','temperature','sharpness'];
+ const PHOTO_EDIT_DEFAULTS={zoom:1,panX:0,panY:0,rotation:0,tilt:0,brightness:0,contrast:0,temperature:0,sharpness:0};
+ let state={lang:'ja',photoPreset:'ID30',paperPreset:'L',orientation:'portrait',photoWidth:30,photoHeight:40,paperWidth:89,paperHeight:127,margin:12,gap:3,autoCount:true,autoLimit:4,copies:4,placement:'center',cutMarks:'corners',activeTab:'crop',...PHOTO_EDIT_DEFAULTS};
+ let photo=null,photoUrl=null,fileName='',fileError='',renderQueued=false,lastPreviewData=null,currentPhotoKey=null,savedPhotoEdit=null;
+ let storageOK=false;
+ try{
+  const testKey='idPhotoPrint.storageCheck';
+  localStorage.setItem(testKey,'1');
+  storageOK=localStorage.getItem(testKey)==='1';
+  localStorage.removeItem(testKey);
+ }catch(e){storageOK=false;}
+ // Global print preferences survive a reload. Photo pixels are never stored.
+ function validatedNumber(value,min,max,fallback){const n=Number(value);return Number.isFinite(n)&&n>=min&&n<=max?n:fallback;}
+ function restoreGlobals(raw){
+  if(!raw||typeof raw!=='object'||Array.isArray(raw))return;
+  for(const key of GLOBAL_KEYS){
+   if(Object.prototype.hasOwnProperty.call(raw,key)&&typeof raw[key]===typeof state[key])state[key]=raw[key];
+  }
+ }
+ if(storageOK){
+  try{
+   const v1=JSON.parse(localStorage.getItem(STORAGE_SETTINGS_KEY)||'null');
+   if(v1&&v1.schema===1&&v1.settings&&typeof v1.settings==='object')restoreGlobals(v1.settings);
+   else{
+    // From v0.3.2, preserve preferences, but migrate its 6 mm default to 12 mm.
+    const legacy=JSON.parse(localStorage.getItem(LEGACY_STORAGE_KEY)||'null');
+    if(legacy&&typeof legacy==='object'){
+     restoreGlobals(legacy);
+     if(state.margin===6)state.margin=12;
+    }
+   }
+  }catch(e){}
+  try{
+   const oldEdit=JSON.parse(localStorage.getItem(STORAGE_EDIT_KEY)||'null');
+   if(oldEdit&&typeof oldEdit.key==='string'&&oldEdit.edits&&typeof oldEdit.edits==='object')savedPhotoEdit=oldEdit;
+  }catch(e){}
+ }
+ if(!(state.lang in T))state.lang='ja';
+ if(!(state.photoPreset in P)&&state.photoPreset!=='CUSTOM')state.photoPreset='ID30';
+ if(!(state.paperPreset in PAPERS)&&state.paperPreset!=='CUSTOM')state.paperPreset='L';
+ if(!['portrait','landscape'].includes(state.orientation))state.orientation='portrait';
+ if(!['corners','outline','none'].includes(state.cutMarks))state.cutMarks='corners';
+ if(![0,4,9,16].includes(state.autoLimit))state.autoLimit=4;
+ if(!['center','top','top-left'].includes(state.placement))state.placement='center';
+ if(!['crop','adjust','layout'].includes(state.activeTab))state.activeTab='crop';
+ state.photoWidth=validatedNumber(state.photoWidth,10,200,30);
+ state.photoHeight=validatedNumber(state.photoHeight,10,200,40);
+ state.paperWidth=validatedNumber(state.paperWidth,40,420,89);
+ state.paperHeight=validatedNumber(state.paperHeight,40,420,127);
+ state.margin=validatedNumber(state.margin,3,30,12);
+ state.gap=validatedNumber(state.gap,0,30,3);
+ state.copies=Math.trunc(validatedNumber(state.copies,1,100,4));
+ function photoSignature(file,image){
+  // Two compact hashes of file metadata; neither file contents nor names are stored.
+  const key=[file.name,file.size,file.lastModified,image.naturalWidth,image.naturalHeight].join('|');
+  let h1=2166136261,h2=2246822519;
+  for(let i=0;i<key.length;i++){
+   const c=key.charCodeAt(i);
+   h1=Math.imul(h1^c,16777619);
+   h2=Math.imul(h2^(c+i),3266489917);
+  }
+  return (h1>>>0).toString(16).padStart(8,'0')+(h2>>>0).toString(16).padStart(8,'0');
+ }
+ function restorePhotoEdits(edits){
+  for(const k of PHOTO_EDIT_KEYS)state[k]=PHOTO_EDIT_DEFAULTS[k];
+  if(!edits||typeof edits!=='object')return;
+  state.zoom=validatedNumber(edits.zoom,1,3.5,1);
+  state.panX=validatedNumber(edits.panX,-1,1,0);
+  state.panY=validatedNumber(edits.panY,-1,1,0);
+  const rotation=validatedNumber(edits.rotation,0,359,0);
+  state.rotation=(Math.round(rotation/90)*90)%360;
+  state.tilt=validatedNumber(edits.tilt,-15,15,0);
+  for(const k of ['brightness','contrast','temperature'])state[k]=validatedNumber(edits[k],-50,50,0);
+  state.sharpness=validatedNumber(edits.sharpness,0,100,0);
+ }
+ function persist(){
+  if(!storageOK)return;
+  try{
+   const settings=Object.fromEntries(GLOBAL_KEYS.map(key=>[key,state[key]]));
+   localStorage.setItem(STORAGE_SETTINGS_KEY,JSON.stringify({schema:1,settings}));
+   if(photo&&currentPhotoKey){
+    const edits=Object.fromEntries(PHOTO_EDIT_KEYS.map(key=>[key,state[key]]));
+    savedPhotoEdit={key:currentPhotoKey,edits};
+    localStorage.setItem(STORAGE_EDIT_KEY,JSON.stringify(savedPhotoEdit));
+   }
+  }catch(e){storageOK=false;renderStorageStatus();}
+ }
+ function renderStorageStatus(){
+  const warning=$('storageWarning');
+  if(storageOK){warning.classList.add('hidden');warning.textContent='';}
+  else{warning.classList.remove('hidden');warning.textContent=' '+T[state.lang].storageUnavailable;}
+ }
+ function syncControls(){
+  $('language').value=state.lang;$('photoPreset').value=state.photoPreset;$('paperPreset').value=state.paperPreset;$('orientation').value=state.orientation;$('photoWidth').value=state.photoWidth;$('photoHeight').value=state.photoHeight;$('paperWidth').value=state.paperWidth;$('paperHeight').value=state.paperHeight;$('margin').value=state.margin;$('gap').value=state.gap;$('autoCount').checked=state.autoCount;$('autoLimit').value=state.autoLimit;$('autoLimit').disabled=!state.autoCount;$('copies').value=state.copies;$('placement').value=state.placement;$('cutMarks').value=state.cutMarks;
+  $('photoCustomFields').classList.toggle('hidden',state.photoPreset!=='CUSTOM');$('paperCustomFields').classList.toggle('hidden',state.paperPreset!=='CUSTOM');$('countFields').classList.toggle('hidden',state.autoCount);
+  for(const k of ['brightness','contrast','temperature','sharpness']){$(k).value=state[k];$(k+'Value').textContent=(state[k]>0?'+':'')+state[k];$(k).disabled=!photo;}
+  $('tilt').value=state.tilt;$('tiltValue').textContent=(state.tilt>0?'+':'')+Number(state.tilt).toFixed(1)+'°';$('tilt').disabled=!photo;
+  for(const id of ['rotateLeft','rotateRight','resetRotation','resetAdjust'])$(id).disabled=!photo;
+ }
+ function translate(){document.documentElement.lang=state.lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(T[state.lang][k])el.textContent=T[state.lang][k];});document.title='ID Photo Print v1.0.0';renderStorageStatus()}
+ function sizePhoto(){return state.photoPreset==='CUSTOM'?{w:state.photoWidth,h:state.photoHeight}:{w:P[state.photoPreset][0],h:P[state.photoPreset][1]}}
+ function sizePaper(){const a=state.paperPreset==='CUSTOM'?[state.paperWidth,state.paperHeight]:PAPERS[state.paperPreset];return state.orientation==='landscape'?{w:a[1],h:a[0]}:{w:a[0],h:a[1]}}
+ function sane(){const p=sizePhoto(),sheet=sizePaper();return p.w>=10&&p.w<=200&&p.h>=10&&p.h<=200&&sheet.w>=40&&sheet.w<=420&&sheet.h>=40&&sheet.h<=420&&state.margin>=3&&state.margin<=30&&state.gap>=0&&state.gap<=30}
+ function layout(){const sheet=sizePaper(),p=sizePhoto(),m=state.margin,g=state.gap;
+  if(!sane())return {sheet,p,cols:0,rows:0,max:0,count:0,places:[]};
+  const cols=Math.max(0,Math.floor((sheet.w-2*m+g+1e-6)/(p.w+g))),rows=Math.max(0,Math.floor((sheet.h-2*m+g+1e-6)/(p.h+g))),max=cols*rows;
+  // Physical capacity is independent of the automatic count limit.
+  // The manual count is never constrained by autoLimit.
+  const requested=state.autoCount?Math.min(max,state.autoLimit||max):clamp(Math.trunc(state.copies)||1,1,Math.max(1,max));
+  const count=max?requested:0;const places=[];
+  if(count){
+   // Prefer a compact, balanced block (4 → 2×2, 9 → 3×3 where possible),
+   // while respecting the actual row/column capacity of the paper.
+   let useCols=Math.min(cols,count),best=Infinity;
+   for(let c=1;c<=Math.min(cols,count);c++){
+    const r=Math.ceil(count/c);if(r>rows)continue;
+    const score=Math.abs(c-r)+(c*r-count)*.02;
+    if(score<best-1e-8||Math.abs(score-best)<1e-8&&c>useCols){best=score;useCols=c;}
+   }
+   const useRows=Math.ceil(count/useCols);
+   const totalH=useRows*p.h+(useRows-1)*g;
+   const startY=state.placement==='center'?(sheet.h-totalH)/2:m;
+   for(let r=0,index=0;r<useRows;r++){
+    const current=Math.min(useCols,count-index),totalW=current*p.w+(current-1)*g;
+    const startX=state.placement==='top-left'?m:(sheet.w-totalW)/2;
+    for(let c=0;c<current;c++,index++)places.push({x:startX+c*(p.w+g),y:startY+r*(p.h+g)});
+   }
+  }
+  return{sheet,p,cols,rows,max,count,places};
+ }
+ function cropGeometry(w,h){
+  if(!photo)return null;
+  const angle=(state.rotation+state.tilt)*Math.PI/180,cs=Math.cos(angle),sn=Math.sin(angle);
+  const ac=Math.abs(cs),as=Math.abs(sn),nw=photo.naturalWidth,nh=photo.naturalHeight;
+  // Inverse-rotate all four target corners: the source image must cover them.
+  const boundW=ac*w+as*h,boundH=as*w+ac*h;
+  const scale=Math.max(boundW/nw,boundH/nh)*state.zoom;
+  const freeU=Math.max(0,(nw*scale-boundW)/2),freeV=Math.max(0,(nh*scale-boundH)/2);
+  const u=state.panX*freeU,v=state.panY*freeV;
+  return {angle,cs,sn,scale,freeU,freeV,cx:w/2+cs*u-sn*v,cy:h/2+sn*u+cs*v,dw:nw*scale,dh:nh*scale};
+ }
+ function applyRetouch(canvas){
+  const {brightness,contrast,temperature,sharpness}=state;
+  if(!(brightness||contrast||temperature||sharpness))return;
+  const w=canvas.width,h=canvas.height,ctx=canvas.getContext('2d',{willReadFrequently:true});
+  const image=ctx.getImageData(0,0,w,h),d=image.data;
+  if(brightness||contrast||temperature){
+   const gamma=Math.pow(2,brightness/50),con=Math.pow(2,contrast/50),t=temperature*.6;
+   const lutR=new Uint8ClampedArray(256),lutG=new Uint8ClampedArray(256),lutB=new Uint8ClampedArray(256);
+   for(let i=0;i<256;i++){
+    const mid=255*Math.pow(i/255,1/gamma),v=(mid-127.5)*con+127.5;
+    lutR[i]=clamp(v+t,0,255);lutG[i]=clamp(v+t*.12,0,255);lutB[i]=clamp(v-t,0,255);
+   }
+   for(let i=0;i<d.length;i+=4){d[i]=lutR[d[i]];d[i+1]=lutG[d[i+1]];d[i+2]=lutB[d[i+2]];}
+  }
+  if(sharpness>0&&w>2&&h>2){
+   // Cross-kernel unsharp mask; non-destructive and applied at final output size.
+   const base=new Uint8ClampedArray(d),row=w*4,amount=sharpness/65;
+   for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){
+    const i=(y*w+x)*4;
+    for(let c=0;c<3;c++){
+     const j=i+c;
+     const blur=(4*base[j]+base[j-4]+base[j+4]+base[j-row]+base[j+row])/8;
+     d[j]=clamp(base[j]+amount*(base[j]-blur),0,255);
+    }
+   }
+  }
+  ctx.putImageData(image,0,0);
+ }
+ function renderCroppedImage(canvas){
+  const ctx=canvas.getContext('2d',{willReadFrequently:true});
+  ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);
+  if(!photo)return;
+  const g=cropGeometry(canvas.width,canvas.height);
+  ctx.save();ctx.translate(g.cx,g.cy);ctx.rotate(g.angle);
+  ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
+  ctx.drawImage(photo,-g.dw/2,-g.dh/2,g.dw,g.dh);ctx.restore();
+  applyRetouch(canvas);
+ }
+ function makePhotoData(dpi){
+  if(!photo)return null;
+  const p=sizePhoto(),targetW=Math.ceil(p.w*dpi/25.4),targetH=Math.ceil(p.h*dpi/25.4);
+  const reduction=Math.min(1,5000/Math.max(targetW,targetH),Math.sqrt(18000000/(targetW*targetH)));
+  const c=document.createElement('canvas');c.width=Math.max(1,Math.round(targetW*reduction));c.height=Math.max(1,Math.round(targetH*reduction));
+  renderCroppedImage(c);return c.toDataURL('image/jpeg',.95);
+ }
+ function drawCrop(){const c=$('cropCanvas'),p=sizePhoto();const aspect=p.w/p.h;let w=Math.min(560,Math.max(150,Math.floor(590*aspect))),h=Math.round(w/aspect);if(h>760){h=760;w=Math.round(h*aspect);}c.width=w;c.height=h;const ctx=c.getContext('2d');ctx.fillStyle='#e6ebf0';ctx.fillRect(0,0,w,h);if(photo)renderCroppedImage(c);else{ctx.fillStyle='#b7c6d7';ctx.beginPath();ctx.arc(w/2,h*.35,Math.min(w,h)*.135,0,2*Math.PI);ctx.fill();ctx.beginPath();ctx.ellipse(w/2,h*.78,w*.29,h*.27,0,Math.PI,2*Math.PI);ctx.fill()}
+  $('emptyCrop').classList.toggle('hidden',!!photo);$('cropGrid').classList.toggle('hidden',!photo);$('zoom').disabled=!photo;$('resetCrop').disabled=!photo;$('zoom').value=Math.round(state.zoom*100);$('zoomValue').textContent=`${Math.round(state.zoom*100)}%`;
+  requestAnimationFrame(resizeCropGrid);
+ }
+ function resizeCropGrid(){const c=$('cropCanvas'),r=c.getBoundingClientRect(),s=$('cropStage').getBoundingClientRect();const grid=$('cropGrid');grid.style.width=r.width+'px';grid.style.height=r.height+'px';grid.style.left=(r.left-s.left-1)+'px';grid.style.top=(r.top-s.top-1)+'px'}
+ function svgEsc(s){return String(s).replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]))}
+ function cutGuides(x,y,w,h,mode,gap,margin){const stroke=.17;if(mode==='none')return'';if(mode==='outline')return`<rect x="${x+stroke/2}" y="${y+stroke/2}" width="${Math.max(.01,w-stroke)}" height="${Math.max(.01,h-stroke)}" fill="none" stroke="#222" stroke-width="${stroke}"/>`;
+  const arm=Math.max(.35,Math.min(2,Math.max(.35,gap/2-.35),margin-.9));const notch=.26;
+  const segments=[`M ${x-arm} ${y} H ${x-notch}`,`M ${x} ${y-arm} V ${y-notch}`,`M ${x+w+notch} ${y} H ${x+w+arm}`,`M ${x+w} ${y-arm} V ${y-notch}`,`M ${x-arm} ${y+h} H ${x-notch}`,`M ${x} ${y+h+notch} V ${y+h+arm}`,`M ${x+w+notch} ${y+h} H ${x+w+arm}`,`M ${x+w} ${y+h+notch} V ${y+h+arm}`];
+  return`<path d="${segments.join(' ')}" fill="none" stroke="#222" stroke-width="${stroke}" stroke-linecap="square"/>`;
+ }
+ function sheetSvg(data,preview){const L=layout(),{w,h}=L.sheet,{w:pw,h:ph}=L.p;const attrs=preview?'width="100%" height="100%"':`width="${w}mm" height="${h}mm"`;
+  const defs=data?`<defs><image id="idPhotoAsset" x="0" y="0" width="${pw}" height="${ph}" preserveAspectRatio="none" href="${data}"/></defs>`:'';
+  const items=L.places.map(({x,y})=>{
+   const picture=data?`<use href="#idPhotoAsset" x="${x}" y="${y}"/>`:`<rect x="${x}" y="${y}" width="${pw}" height="${ph}" fill="#e2e8ed"/><path d="M ${x} ${y} l ${pw} ${ph} M ${x+pw} ${y} l ${-pw} ${ph}" stroke="#b1c1ce" stroke-width=".25"/>`;
+   return picture+cutGuides(x,y,pw,ph,state.cutMarks,state.gap,state.margin);
+  }).join('');
+  return`<svg xmlns="http://www.w3.org/2000/svg" ${attrs} viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMinYMin meet" aria-label="ID photo sheet"><rect x="0" y="0" width="${w}" height="${h}" fill="#fff"/>${defs}${items}</svg>`;
+ }
+ function previewSizing(){const {sheet}=layout();const stage=$('sheetStage');const availW=Math.max(80,stage.clientWidth-36),availH=580;const k=Math.min(availW/sheet.w,availH/sheet.h,6);$('sheetPage').style.width=(sheet.w*k)+'px';$('sheetPage').style.height=(sheet.h*k)+'px'}
+ function qualityText(){const info=$('qualityInfo');const t=T[state.lang];if(!photo){info.classList.remove('warn');info.textContent=t.cropHelp;return}
+  const p=sizePhoto(),c=$('cropCanvas'),g=cropGeometry(c.width,c.height);
+  const effective=Math.floor(25.4*c.width/(g.scale*p.w)),bad=effective<300;
+  info.classList.toggle('warn',bad);info.textContent=`${t.imageResolution}: ${photo.naturalWidth} × ${photo.naturalHeight} px · ${t.visibleDpi}: ${effective} dpi${bad?' — '+t.lowResolution:''}`;
+ }
+ function paperLabel(){const a={L:'paperLShort','2L':'paper2LShort',POST:'paperPostShort',A4:null,CUSTOM:'paperCustomLabel'};return a[state.paperPreset]?T[state.lang][a[state.paperPreset]]:'A4'}
+ function renderMeta(){const L=layout(),t=T[state.lang];$('cropDimensions').textContent=`${L.p.w} × ${L.p.h} mm`;$('paperDimensions').textContent=`${paperLabel()} · ${L.sheet.w} × ${L.sheet.h} mm`;
+  const note=$('layoutSummary');if(!sane()||!L.max){note.classList.add('error');note.textContent=sane()?t.noFit:t.invalid}else{note.classList.remove('error');note.textContent=`${L.count} ${t.count} / ${t.max} ${L.max} · ${L.cols} ${t.columns} × ${L.rows} ${t.rows}`}
+  $('copies').max=Math.max(1,L.max);if(!state.autoCount&&L.max&&(!Number.isFinite(state.copies)||state.copies<1||state.copies>L.max)){state.copies=clamp(Number.isFinite(state.copies)?state.copies:1,1,L.max);$('copies').value=state.copies}
+  $('printBtn').disabled=!photo||!L.count;
+  $('printStatus').textContent=!L.count?(sane()?t.noFit:t.invalid):photo?t.printReady:t.uploadFirst;
+  $('printStatus').classList.toggle('is-ready',!!photo&&!!L.count);
+  $('printJobInfo').textContent=L.count?`${paperLabel()} · ${L.sheet.w} × ${L.sheet.h} mm · ${L.count} ${t.count} · ${PRINT_DPI} dpi`:'';
+  if(photo){$('photoInfo').textContent=`${fileName} · ${photo.naturalWidth} × ${photo.naturalHeight} px`;}else $('photoInfo').textContent=fileError||t.noPhoto;
+  qualityText();$('dynamicPageStyle').textContent=`@page { size: ${L.sheet.w}mm ${L.sheet.h}mm; margin: 0; }`;
+ }
+ function scheduleRender(){if(renderQueued)return;renderQueued=true;requestAnimationFrame(()=>{renderQueued=false;renderAll()})}
+ function renderAll(){syncControls();translate();drawCrop();renderMeta();try{lastPreviewData=photo?makePhotoData(190):null}catch(e){lastPreviewData=null;}
+  $('sheetPage').innerHTML=sheetSvg(lastPreviewData,true);previewSizing();persist();
+ }
+ function applySettings(){state.photoPreset=$('photoPreset').value;state.paperPreset=$('paperPreset').value;state.orientation=$('orientation').value;state.photoWidth=n('photoWidth',30);state.photoHeight=n('photoHeight',40);state.paperWidth=n('paperWidth',89);state.paperHeight=n('paperHeight',127);state.margin=n('margin',12);state.gap=n('gap',3);state.autoCount=$('autoCount').checked;state.autoLimit=Number($('autoLimit').value);state.copies=Math.floor(n('copies',1));state.placement=$('placement').value;state.cutMarks=$('cutMarks').value;scheduleRender()}
+ async function loadFile(f){if(!f)return;if(f.size>100*1024*1024){fileError=T[state.lang].fileTooLarge;photo=null;currentPhotoKey=null;scheduleRender();return}
+  if(!(/^image\/(jpeg|png|webp|bmp)$/.test(f.type)||/\.(jpe?g|png|webp|bmp)$/i.test(f.name))){fileError=T[state.lang].fileError;photo=null;currentPhotoKey=null;scheduleRender();return}
+  const url=URL.createObjectURL(f),image=new Image();try{image.src=url;await image.decode();if(!image.naturalWidth||!image.naturalHeight)throw Error('empty');if(photoUrl)URL.revokeObjectURL(photoUrl);photoUrl=url;photo=image;fileName=f.name;fileError='';currentPhotoKey=photoSignature(f,image);restorePhotoEdits(savedPhotoEdit?.key===currentPhotoKey?savedPhotoEdit.edits:null);scheduleRender()}catch(e){URL.revokeObjectURL(url);fileError=T[state.lang].fileError;photo=null;currentPhotoKey=null;scheduleRender()}
+ }
+ const picker=$('imageFile'),drop=$('dropzone');drop.addEventListener('click',()=>picker.click());drop.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();picker.click()}});picker.addEventListener('change',e=>{loadFile(e.target.files?.[0]);picker.value=''});
+ ['dragenter','dragover'].forEach(evt=>drop.addEventListener(evt,e=>{e.preventDefault();drop.classList.add('drag-over')}));['dragleave','drop'].forEach(evt=>drop.addEventListener(evt,e=>{e.preventDefault();drop.classList.remove('drag-over')}));drop.addEventListener('drop',e=>loadFile(e.dataTransfer?.files?.[0]));
+ $('language').addEventListener('change',e=>{state.lang=e.target.value;renderAll()});
+ for(const id of ['photoPreset','paperPreset','orientation','photoWidth','photoHeight','paperWidth','paperHeight','margin','gap','autoCount','autoLimit','copies','placement','cutMarks'])$(id).addEventListener(['photoWidth','photoHeight','paperWidth','paperHeight','margin','gap','copies'].includes(id)?'change':'change',applySettings);
+ function setTab(key){
+  for(const k of ['crop','adjust','layout']){
+   const active=k===key,upper=k[0].toUpperCase()+k.slice(1),btn=$('tabButton'+upper);
+   btn.classList.toggle('active',active);btn.setAttribute('aria-selected',String(active));
+   $('pane'+upper).hidden=!active;btn.tabIndex=active?0:-1;
+  }
+  state.activeTab=key;persist();
+ }
+ const tabButtons=[...document.querySelectorAll('.tabButton')];
+ tabButtons.forEach((button,i)=>{
+  button.addEventListener('click',()=>setTab(button.dataset.tab));
+  button.addEventListener('keydown',e=>{
+   let index=i;
+   if(e.key==='ArrowRight')index=(i+1)%tabButtons.length;
+   else if(e.key==='ArrowLeft')index=(i+tabButtons.length-1)%tabButtons.length;
+   else if(e.key==='Home')index=0;
+   else if(e.key==='End')index=tabButtons.length-1;
+   else return;
+   e.preventDefault();setTab(tabButtons[index].dataset.tab);tabButtons[index].focus();
+  });
+ });
+ for(const k of ['brightness','contrast','temperature','sharpness'])$(k).addEventListener('input',e=>{state[k]=Number(e.target.value);$(k+'Value').textContent=(state[k]>0?'+':'')+state[k];scheduleRender()});
+ $('resetAdjust').addEventListener('click',()=>{for(const k of ['brightness','contrast','temperature','sharpness'])state[k]=0;scheduleRender()});
+ for(const [id,delta] of [['rotateLeft',-90],['rotateRight',90]])$(id).addEventListener('click',()=>{state.rotation=(state.rotation+delta+360)%360;state.panX=0;state.panY=0;scheduleRender()});
+ $('tilt').addEventListener('input',e=>{state.tilt=Number(e.target.value);scheduleRender()});
+ $('resetRotation').addEventListener('click',()=>{state.rotation=0;state.tilt=0;state.panX=0;state.panY=0;scheduleRender()});
+ $('zoom').addEventListener('input',e=>{state.zoom=Number(e.target.value)/100;scheduleRender()});$('resetCrop').addEventListener('click',()=>{state.zoom=1;state.panX=0;state.panY=0;scheduleRender()});
+ const crop=$('cropCanvas');let dragging=false,clientX=0,clientY=0;
+ crop.addEventListener('pointerdown',e=>{if(!photo)return;dragging=true;clientX=e.clientX;clientY=e.clientY;crop.setPointerCapture(e.pointerId)});
+ crop.addEventListener('pointermove',e=>{if(!dragging||!photo)return;const r=crop.getBoundingClientRect(),g=cropGeometry(crop.width,crop.height),dx=(e.clientX-clientX)*(crop.width/r.width),dy=(e.clientY-clientY)*(crop.height/r.height);clientX=e.clientX;clientY=e.clientY;
+  const du=g.cs*dx+g.sn*dy,dv=-g.sn*dx+g.cs*dy;if(g.freeU>.001)state.panX=clamp(state.panX+du/g.freeU,-1,1);if(g.freeV>.001)state.panY=clamp(state.panY+dv/g.freeV,-1,1);scheduleRender()});
+ ['pointerup','pointercancel','lostpointercapture'].forEach(id=>crop.addEventListener(id,()=>{dragging=false}));
+ crop.addEventListener('wheel',e=>{if(!photo)return;e.preventDefault();state.zoom=clamp(Math.round((state.zoom+(e.deltaY>0?-.05:.05))*100)/100,1,3.5);scheduleRender()},{passive:false});
+ window.addEventListener('resize',()=>{previewSizing();resizeCropGrid()});
+ $('printBtn').addEventListener('click',()=>{
+  if(!photo||!layout().count)return;
+  try{const hiRes=makePhotoData(PRINT_DPI);$('printRoot').innerHTML=sheetSvg(hiRes,false);window.print();}catch(e){alert(state.lang==='ja'?'印刷データを準備できませんでした。写真サイズを小さくするか、画像を変更してください。':'Could not prepare the print image. Try a smaller photo size or another image.')}
+ });
+ setTab(state.activeTab);renderAll();
+})();
+</script>
+</body>
+</html>
